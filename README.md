@@ -9,18 +9,18 @@ services:
     image: pihole/pihole:latest
     networks:
       pihole_network:
-        ipv4_address: '192.168.1.149' #update, assign open ip manually
+        ipv4_address: '192.168.0.149' #update, assign open ip manually
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
       - "80:80/tcp"
     environment:
-      TZ: 'America/New_York' # update according to your timezone
+      TZ: 'Asia/KolKata' # update according to your timezone
       WEBPASSWORD: 'choose secured password' #update password
     volumes:
-      - '/home/username/pihole/etc-pihole:/etc/pihole' #update
-      - '/home/username/pihole/etc-dnsmasq.d:/etc/dnsmasq.d' #update
+      - '/home/pi/pihole/etc-pihole:/etc/pihole' #update
+      - '/home/pi/pihole/etc-dnsmasq.d:/etc/dnsmasq.d' #update
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
@@ -32,7 +32,7 @@ networks:
       parent: eth0
     ipam:
       config:
-        - subnet: 192.168.1.0/24 #update if needed
-          gateway: 192.168.1.1 #update if needed
+        - subnet: 192.168.0.0/24 #update if needed
+          gateway: 192.168.0.1 #update if needed
 
 ```
